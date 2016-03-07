@@ -1,19 +1,19 @@
+
 server {
 listen 80 default_server;
 server_name _;
 
 location /hello/ {
 proxy_pass http://127.0.0.1:8080;
-proxy_redirect     off;
-proxy_set_header   Host             $host;          
-proxy_set_header   X-Real-IP        $remote_addr;
-proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+proxy_set_header
+proxy_set_header X-Real-IP $remote_addr;
+add_header P3P 'CP="ALL DSP COR PSAa PSDa OUR NOR ONL UNI COM NAV"';
+
 }
 
 location ~ \.\w\w\w?\w?$ {
 root /home/box/web/public;
 }
-
 location ^~ /uploads {
 alias /home/box/web/uploads;
 }
